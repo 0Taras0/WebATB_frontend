@@ -1,0 +1,25 @@
+<!-- Перевірка, чи список категорій пустий -->
+@if (categories.length === 0) {
+  <div class="alert alert-info text-center">
+    Категорії наразі відсутні.
+  </div>
+}
+
+<a class="btn btn-primary mb-3" routerLink="/category/create">Додати</a>
+
+<!-- Вивід карток, якщо є категорії -->
+@if (categories.length > 0) {
+  <div class="row">
+    @for (category of categories; track category.id) {
+      <div class="col-md-3 mb-4">
+        <div class="card h-100 shadow-sm">
+          <img [src]=`${environment.imagePath800}${category.image}` [alt]="category.name" class="card-img-top"
+               style="height: 200px; object-fit: cover;">
+          <div class="card-body text-center">
+            <h5 class="card-title">{{ category.name }}</h5>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+}
