@@ -1,0 +1,5 @@
+<ul *ngIf="control?.touched && control?.errors as errors">
+  <li *ngFor="let error of errors | keyvalue" class="text-danger">
+    {{ error.value }}
+  </li>
+</ul>
