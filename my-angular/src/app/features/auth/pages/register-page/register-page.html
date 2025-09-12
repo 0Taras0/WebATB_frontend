@@ -1,1 +1,49 @@
-<p>register-page works!</p>
+<h1 class="text-center">User Register</h1>
+
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="col-md-6 offset-md-3">
+
+  <div class="mb-3">
+    <label for="firstName" class="form-label">First Name</label>
+    <input type="text" formControlName="firstName" class="form-control" id="firstName">
+    <app-form-errors-component [control]="registerForm.get('firstName')"></app-form-errors-component>
+  </div>
+
+  <div class="mb-3">
+    <label for="lastName" class="form-label">Last Name</label>
+    <input type="text" formControlName="lastName" class="form-control" id="lastName">
+    <app-form-errors-component [control]="registerForm.get('lastName')"></app-form-errors-component>
+  </div>
+
+  <div class="mb-3">
+    <label for="email" class="form-label">Email</label>
+    <input type="email" formControlName="email" class="form-control" id="email">
+    <app-form-errors-component [control]="registerForm.get('email')"></app-form-errors-component>
+  </div>
+
+  <div class="mb-3">
+    <label for="password" class="form-label">Password</label>
+    <input type="password" formControlName="password" class="form-control" id="password">
+    <app-form-errors-component [control]="registerForm.get('password')"></app-form-errors-component>
+  </div>
+
+  <div class="mb-3">
+    <label for="confirmPassword" class="form-label">Confirm Password</label>
+    <input type="password" formControlName="confirmPassword" class="form-control" id="confirmPassword">
+    <app-form-errors-component [control]="registerForm.get('confirmPassword')"></app-form-errors-component>
+    <div *ngIf="registerForm.hasError('passwordMismatch') && registerForm.get('confirmPassword')?.touched" class="text-danger">
+      Паролі не співпадають
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="imageFile" class="form-label">Avatar</label>
+    <input type="file" (change)="onFileSelected($event)" class="form-control" id="imageFile">
+  </div>
+
+  <div class="mb-3 text-center" *ngIf="imagePreview">
+    <img [src]="imagePreview" alt="Preview"
+         style="height: 200px; object-fit: cover; max-width: 100%;">
+  </div>
+
+  <button type="submit" class="btn btn-primary w-100">Register</button>
+</form>

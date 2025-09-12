@@ -107,10 +107,7 @@ export class CategoriesEditPage implements OnInit {
       return;
     }
 
-    // перетворюємо в FormData
-    const formData = serialize(this.categoryForm.value);
-
-    this.categoryService.editCategory(formData).subscribe({
+    this.categoryService.editCategory(this.categoryForm.value).subscribe({
       next: (res) => {
         this.router.navigate(['/']);
       },

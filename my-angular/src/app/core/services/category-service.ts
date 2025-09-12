@@ -1,7 +1,8 @@
-import {Category} from '../../features/categories/models/category.interfaces';
+import {Category, CategoryCreate, CategoryEdit} from '../../features/categories/models/category.interfaces';
 import { Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {ApiService} from './api-service';
+import {serialize} from 'object-to-formdata';
 
 @Injectable({
   providedIn: 'root',
@@ -20,11 +21,13 @@ export class CategoryService {
     return this.api.get<Category>(`${this.apiUrl}getById/${id}`);
   }
 
-  editCategory(formData: FormData) {
+  editCategory(category: CategoryEdit) {
+    const formData = serialize(category);
     return this.api.put(`${this.apiUrl}update`, formData);
   }
 
-  createCategory(formData: FormData) {
+  createCategory(category: CategoryCreate) {
+    const formData = serialize(category);
     return this.api.post(`${this.apiUrl}create`, formData);
   }
 

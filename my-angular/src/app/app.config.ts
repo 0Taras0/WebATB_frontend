@@ -12,6 +12,7 @@ import {loadingInterceptor} from './core/interceptors/loading-interceptor';
 import {errorInterceptor} from './core/interceptors/erorr-interceptor';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ToastrModule} from 'ngx-toastr';
+import {authInterceptor} from './core/interceptors/auth-interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -19,7 +20,8 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(
       withInterceptors([
         loadingInterceptor,
-        errorInterceptor // ✅ додали сюди
+        errorInterceptor,
+        authInterceptor
       ])
     ),
     provideZoneChangeDetection({ eventCoalescing: true }),

@@ -21,7 +21,6 @@ export class HomePage implements OnInit {
   private router = inject(Router);
   private categoryService = inject(CategoryService);
 
-  //Це наш список категорій
   categories: Category[] = [];
   isDeleteModalOpen = false;
   idToDelete: number = -1;

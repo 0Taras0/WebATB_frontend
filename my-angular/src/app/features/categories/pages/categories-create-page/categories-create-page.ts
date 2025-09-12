@@ -72,10 +72,7 @@ export class CategoriesCreatePage {
       return;
     }
 
-    // перетворюємо в FormData
-    const formData = serialize(this.categoryForm.value);
-
-    this.categoryService.createCategory(formData).subscribe({
+    this.categoryService.createCategory(this.categoryForm.value).subscribe({
       next: () => {
         this.router.navigate(['/']);
       },
